@@ -16,7 +16,11 @@ require_relative "lib/discourse_embed_markdown/engine"
 
 after_initialize do
   register_modifier(:topic_embed_import_create_args) do |args|
-    DiscourseEmbedMarkdown::HtmlConverter.convert(args)
+    if SiteSetting.discourse_embed_markdown_enabled
+      DiscourseEmbedMarkdown::HtmlConverter.convert(args)
+    else
+      args
+    end
   end
 
   on(:site_setting_changed) do |name, old_value, new_value|
