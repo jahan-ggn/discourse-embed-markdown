@@ -1,4 +1,8 @@
-discourse_embed_markdown:
+plugins:
   discourse_embed_markdown_enabled:
-    default: false
+    default: true
     client: true
+  discourse_embed_markdown_template:
+    default: ""
+    textarea: true
+    area: "site_admin"

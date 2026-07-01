@@ -5,4 +5,6 @@ DiscourseEmbedMarkdown::Engine.routes.draw do
   # define routes here
 end
 
-Discourse::Application.routes.draw { mount ::DiscourseEmbedMarkdown::Engine, at: "discourse-embed-markdown" }
+Discourse::Application.routes.draw do
+  mount ::DiscourseEmbedMarkdown::Engine, at: "discourse-embed-markdown"
+end

@@ -6,4 +6,5 @@ en:
           discourse_embed_markdown: "Discourse Embed Markdown"
   js:
     discourse_embed_markdown:
-      placeholder: placeholder
+      title: "Discourse Embed Markdown"
+      admin_navigation: "Discourse Embed Markdown"

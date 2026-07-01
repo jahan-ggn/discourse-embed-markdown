@@ -1,1 +1,4 @@
 en:
+  site_settings:
+    discourse_embed_markdown_enabled: "Enable the Embed Markdown plugin to convert HTML embeds to Markdown and enable Onebox previews."
+    discourse_embed_markdown_template: "The template used for the first post of embedded topics. Use {{embed_url}} as a placeholder for the blog post link."

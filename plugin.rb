@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 # name: discourse-embed-markdown
-# about: TODO
-# meta_topic_id: TODO
+# about: Converts embedded HTML content to Markdown to enable Onebox previews.
 # version: 0.0.1
-# authors: Discourse
-# url: TODO
-# required_version: 2.7.0
+# authors: Jahan Gagan
+# url: https://github.com/jahan-ggn/discourse-embed-markdown
 
 enabled_site_setting :discourse_embed_markdown_enabled
 
@@ -17,5 +15,13 @@ end
 require_relative "lib/discourse_embed_markdown/engine"
 
 after_initialize do
-  # Code which should run after Rails has finished booting
+  register_modifier(:topic_embed_import_create_args) do |args|
+    DiscourseEmbedMarkdown::HtmlConverter.convert(args)
+  end
+
+  DiscourseEvent.on(:site_setting_changed) do |name, old_value, new_value|
+    if name == :discourse_embed_markdown_template
+      Jobs.enqueue(Jobs::DiscourseEmbedMarkdown::UpdateEmbeds)
+    end
+  end
 end
