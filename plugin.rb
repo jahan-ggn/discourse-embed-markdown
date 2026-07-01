@@ -19,7 +19,7 @@ after_initialize do
     DiscourseEmbedMarkdown::HtmlConverter.convert(args)
   end
 
-  DiscourseEvent.on(:site_setting_changed) do |name, old_value, new_value|
+  on(:site_setting_changed) do |name, old_value, new_value|
     if name == :discourse_embed_markdown_template
       Jobs.enqueue(Jobs::DiscourseEmbedMarkdown::UpdateEmbeds)
     end
