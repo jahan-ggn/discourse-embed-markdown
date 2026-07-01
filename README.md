@@ -1,4 +1,4 @@
-# **Plugin Name** Plugin
+# **Discourse Embed Markdown** Plugin
 
 **Plugin Summary**
 

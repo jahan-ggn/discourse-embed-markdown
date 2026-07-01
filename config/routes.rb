@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
+DiscourseEmbedMarkdown::Engine.routes.draw do
   get "/examples" => "examples#index"
   # define routes here
 end
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.draw { mount ::DiscourseEmbedMarkdown::Engine, at: "discourse-embed-markdown" }

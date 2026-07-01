@@ -3,7 +3,7 @@ en:
     admin:
       site_settings:
         categories:
-          TODO_plugin_name: "Plugin Name"
+          discourse_embed_markdown: "Discourse Embed Markdown"
   js:
-    discourse_plugin_name:
+    discourse_embed_markdown:
       placeholder: placeholder
