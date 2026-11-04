@@ -24,7 +24,7 @@ after_initialize do
   reloadable_patch do
     patch = ::DiscourseEmbedMarkdown::BrowserOneboxPatch
 
-    ::Oneboxer.singleton_class.prepend(patch) unless ::Oneboxer.singleton_class < patch
+    ::Oneboxer.singleton_class.prepend(patch) if ::Oneboxer.singleton_class >= patch
   end
 
   register_modifier(:topic_embed_import_create_args) do |args|
