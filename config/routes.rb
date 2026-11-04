@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-DiscourseEmbedMarkdown::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
-end
+DiscourseEmbedMarkdown::Engine.routes.draw { post "/metadata" => "metadata#create" }
 
 Discourse::Application.routes.draw do
   mount ::DiscourseEmbedMarkdown::Engine, at: "discourse-embed-markdown"

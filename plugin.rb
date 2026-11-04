@@ -10,13 +10,29 @@ enabled_site_setting :discourse_embed_markdown_enabled
 
 module ::DiscourseEmbedMarkdown
   PLUGIN_NAME = "discourse-embed-markdown"
+
+  module BrowserOneboxPatch
+    def external_onebox(url, *args)
+      ::DiscourseEmbedMarkdown::BrowserMetadata.onebox(url) || super
+    end
+  end
 end
 
 require_relative "lib/discourse_embed_markdown/engine"
 
 after_initialize do
+  reloadable_patch do
+    patch = ::DiscourseEmbedMarkdown::BrowserOneboxPatch
+
+    ::Oneboxer.singleton_class.prepend(patch) unless ::Oneboxer.singleton_class < patch
+  end
+
   register_modifier(:topic_embed_import_create_args) do |args|
     if SiteSetting.discourse_embed_markdown_enabled
+      metadata = DiscourseEmbedMarkdown::BrowserMetadata.read(args[:embed_url])
+
+      args[:title] = metadata["title"] if metadata.present?
+
       DiscourseEmbedMarkdown::HtmlConverter.convert(args)
     else
       args
